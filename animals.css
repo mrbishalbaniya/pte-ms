@@ -1,0 +1,170 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 20px;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+main {
+    display: flex;
+    background-color: #fff;
+}
+
+aside {
+    width: 250px;
+    background-color: #fff;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+}
+
+.logo img {
+    max-width: 100%;
+}
+
+.logo h1 {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.filters {
+    margin-top: 20px;
+}
+
+.filter-section h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.dropdown-menu{
+    display: none;
+}
+
+.dropdown-menu a {
+    text-decoration: none;
+    display: block;
+}
+
+.filter-section .title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-section .title img{
+    height: 20px;
+}
+.filter-section .title h2{
+    cursor: pointer;
+}
+
+.filter-section ul {
+    list-style: none;
+    padding-left: 10px;
+}
+
+.filter-section ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.animal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.animal {
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.animal img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.animal h3 {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.animal p {
+    font-size: 14px;
+    color: #666;
+}
+
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination a,
+.pagination span {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 10px;
+    background-color: #fff;
+    color: #007bff;
+    text-decoration: none;
+    border: 1px solid #ddd;
+}
+
+.pagination a:hover {
+    background-color: #007bff;
+    color: #fff;
+}

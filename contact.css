@@ -1,0 +1,23 @@
+.contact{
+    background-color: #D7E6F1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    gap: 20px;
+    margin: 0;
+} 
+
+.detail p{
+    margin: 10px 0;
+}
+
+.container{
+    background-color: white;
+}
+
+.contact h1{
+    align-self: flex-start;
+    margin-left: 70px;
+}

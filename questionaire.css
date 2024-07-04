@@ -1,0 +1,60 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+main{
+    background-color: #D7E6F1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 70%;
+    background-color: white;
+}
+
+.container .top{
+    display: flex;
+    align-items: center;
+}
+
+.blue-line{
+    height: 2px;
+    background-color: rgb(14, 195, 255);
+    width: 90%;
+}
+
+.form .first{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form input{
+    width: 60%;
+}
+
+.family{
+    margin: 20px 0;
+}
+.lifestyle{
+    margin: 20px 0;
+}
+.btn{
+    margin: 20px 0;
+}
+.btn button{
+    padding: 8px 35px;
+    font-size: 15px;
+    background-color: #46505A;
+    color: white;
+    /* border-radius: 50px; */
+}

@@ -1,0 +1,59 @@
+main{
+    width: full;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 50px 30px;
+    width: 100%;
+    row-gap: 20px;
+}
+
+.message{
+    background-color: #1F8AD5;
+    color: white;
+    width: 700px;
+    padding: 15px;
+}
+
+.message p{
+    margin: 10px 0;
+}
+
+.container form{
+    width: 700px;
+}
+
+form .form-group{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+form .form-group input{
+    width: 50%;
+    background-color: #EBEBF0;
+    border: none;
+    padding: 15px 0;
+    outline: none;
+    font-size: 17px;
+}
+
+form .form-group textarea{
+    background-color: #EBEBF0;
+    font-size: 15px;
+    border: none;
+    outline: none;
+}
+
+.btn button{
+   background-color: #00A3FD;
+   color: white;
+   padding: 10px 30px;
+   border: none;
+   border-radius: 10px;
+}
