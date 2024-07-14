@@ -7,7 +7,7 @@ $animal = [];
 
 // Fetch animal details based on ID
 $animal_id = $_GET['id'] ?? 1; // Replace with actual animal ID
-$query = "SELECT * FROM animals WHERE id = $animal_id";
+$query = "SELECT * FROM animals WHERE id = $animal_id" ;
 $result = $conn->query($query);
 
 if ($result->num_rows > 0) {

@@ -13,8 +13,8 @@ $limit = 6; // Number of animals per page
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 
-// Fetch animals from the database
-$sql = "SELECT * FROM animals LIMIT ?, ?";
+// Fetch animals from the database in descending order of ID
+$sql = "SELECT * FROM animals ORDER BY id DESC LIMIT ?, ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("ii", $offset, $limit);
 $stmt->execute();

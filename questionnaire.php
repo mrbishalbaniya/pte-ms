@@ -57,6 +57,19 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Adoption Questionnaire</title>
     <link rel="stylesheet" href="questionaire.css">
+    <script>
+        function validateChildrenAges() {
+            const childrenAges = document.getElementById('children_ages').value;
+            const agePattern = /^(\d+)(,\d+)*$/;
+
+            if (!agePattern.test(childrenAges)) {
+                alert('Please enter valid ages separated by commas (e.g., 3,5,7). Only non-negative numbers and a single comma between numbers are allowed.');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -81,15 +94,35 @@ $conn->close();
                         <h2>Your Family</h2>
                         <div class="first">
                             <label for="adopter">Who are you planning to adopt this pet for?</label>
-                            <input type="text" id="adopter" name="adopter" placeholder="myself | family | others" required>
+                            <select id="adopter" name="adopter" required>
+                                <option value="" disabled selected>Choose an option</option>
+                                <option value="myself">Myself</option>
+                                <option value="family">Family</option>
+                                <option value="others">Others</option>
+                            </select>
                             <label for="primary_caregiver">Who will be the primary caregiver for this pet?</label>
-                            <input type="text" id="primary_caregiver" name="primary_caregiver" placeholder="Me | My Partner | My child | other" required>
+                            <select id="primary_caregiver" name="primary_caregiver" required>
+                                <option value="" disabled selected>Choose an option</option>
+                                <option value="Me">Me</option>
+                                <option value="My Partner">My Partner</option>
+                                <option value="My child">My child</option>
+                                <option value="Other">Other</option>
+                            </select>
                             <label for="children_count">Number of children at home:</label>
-                            <input type="number" id="children_count" name="children_count" placeholder="Number of children" required>
+                            <select id="children_count" name="children_count" required>
+                                <option value="" disabled selected>Choose an option</option>
+                                <?php for ($i = 0; $i <= 10; $i++): ?>
+                                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                <?php endfor; ?>
+                            </select>
                             <label for="children_ages">List the ages of the children at home (comma separated):</label>
                             <input type="text" id="children_ages" name="children_ages" placeholder="Ages of children" required>
                             <label for="family_allergies">Any pet allergies in the family? (No/Yes)</label>
-                            <input type="text" id="family_allergies" name="family_allergies" placeholder="Yes/No" required>
+                            <select id="family_allergies" name="family_allergies" required>
+                                <option value="" disabled selected>Choose an option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
                         </div>
                     </div>
                     <div class="lifestyle">
@@ -97,11 +130,30 @@ $conn->close();
                         <h2>Your Lifestyle</h2>
                         <div class="first">
                             <label for="residence_type">Type of Residence</label>
-                            <input type="text" id="residence_type" name="residence_type" placeholder="house | condominium | studio | mansion | other" required>
+                            <select id="residence_type" name="residence_type" required>
+                                <option value="" disabled selected>Choose an option</option>
+                                <option value="house">House</option>
+                                <option value="condominium">Condominium</option>
+                                <option value="studio">Studio</option>
+                                <option value="mansion">Mansion</option>
+                                <option value="other">Other</option>
+                            </select>
                             <label for="day_stay_location">Where will your pet stay during the day?</label>
-                            <input type="text" id="day_stay_location" name="day_stay_location" placeholder="indoors | garage | free roaming | yard" required>
+                            <select id="day_stay_location" name="day_stay_location" required>
+                                <option value="" disabled selected>Choose an option</option>
+                                <option value="indoors">Indoors</option>
+                                <option value="garage">Garage</option>
+                                <option value="free roaming">Free roaming</option>
+                                <option value="yard">Yard</option>
+                            </select>
                             <label for="night_sleep_location">Where will your pet sleep at night?</label>
-                            <input type="text" id="night_sleep_location" name="night_sleep_location" placeholder="indoors | garage | free roaming | yard" required>
+                            <select id="night_sleep_location" name="night_sleep_location" required>
+                                <option value="" disabled selected>Choose an option</option>
+                                <option value="indoors">Indoors</option>
+                                <option value="garage">Garage</option>
+                                <option value="free roaming">Free roaming</option>
+                                <option value="yard">Yard</option>
+                            </select>
                         </div>
                     </div>
                     <div class="btn">

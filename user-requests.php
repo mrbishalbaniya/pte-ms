@@ -9,7 +9,7 @@ if (!isset($_SESSION['admin_id'])) {
 }
 
 // Fetch all adoption requests
-$sql = "SELECT q.*, u.name AS user_name, a.name AS animal_name, a.image AS animal_image, a.breed AS animal_breed, a.age AS animal_age, a.color AS animal_color, a.sex AS animal_sex
+$sql = "SELECT q.*, u.name AS user_name, a.name AS animal_name, a.image AS animal_image, a.breed AS animal_breed, a.age AS animal_age, a.color AS animal_color, a.sex AS animal_sex, a.status AS animal_status
         FROM questionnaire q
         INNER JOIN users u ON q.user_id = u.id
         INNER JOIN animals a ON q.animal_id = a.id";
@@ -64,8 +64,8 @@ $result = $conn->query($sql);
                     echo '<p><strong>Breed:</strong> ' . htmlspecialchars($row['animal_breed']) . '</p>';
                     echo '<p><strong>Age:</strong> ' . htmlspecialchars($row['animal_age']) . '</p>';
                     echo '<p><strong>Color:</strong> ' . htmlspecialchars($row['animal_color']) . '</p>';
-                    echo '<p><strong>Sex:</strong> ' . htmlspecialchars($row['animal_sex']) . '</p>';
-                    if ($row['status'] == 'approved') {
+                    echo '<p>                       <strong>Sex:</strong> ' . htmlspecialchars($row['animal_sex']) . '</p>';
+                    if ($row['animal_status'] == 'approved') {
                         echo '<p><strong>Status:</strong> Approved</p>';
                     } else {
                         echo '<form action="approve_delete_request.php" method="post">';
@@ -73,6 +73,7 @@ $result = $conn->query($sql);
                         echo '<button type="submit" name="action" value="approve" class="approve-btn">Approve</button>';
                         echo '<button type="submit" name="action" value="delete" class="delete-btn">Delete</button>';
                         echo '</form>';
+                        
                     }
                     echo '</div>';
                     echo '</div>';

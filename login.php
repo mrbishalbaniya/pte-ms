@@ -45,6 +45,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Pet Adoption</title>
     <link rel="stylesheet" href="login.css">
+    <script>
+        function validateLoginForm() {
+            var username = document.getElementById("username").value.trim();
+            var password = document.getElementById("password").value.trim();
+            var error = "";
+
+            // Validate username
+            if (!username) {
+                error += "Username is required.\n";
+            }
+
+            // Validate password
+            if (!password) {
+                error += "Password is required.\n";
+            }
+
+            if (error) {
+                alert(error);
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 
 <body>
@@ -83,9 +106,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<p style='color:red;'>$login_error</p>";
             }
             ?>
-            <form method="POST" action="">
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="password" name="password" placeholder="Password" required>
+            <form method="POST" action="" onsubmit="return validateLoginForm()">
+                <input type="text" id="username" name="username" placeholder="Username" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
                 <div class="btn">
                     <button type="submit">Sign In</button>
                 </div>

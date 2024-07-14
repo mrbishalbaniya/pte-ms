@@ -9,43 +9,48 @@ if (!isset($_SESSION['admin_id'])) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Handle form submission
-    $name = $_POST['name'];
-    $type = $_POST['type'];
-    $breed = $_POST['breed'];
-    $sex = $_POST['sex'];
-    $age = $_POST['age']; // This will now handle any string input
-    $color = $_POST['color'];
-    $size = $_POST['size'];
-    $description = $_POST['description'];
+    // Handle form submission and sanitize inputs
+    $name = htmlspecialchars(trim($_POST['name']));
+    $type = htmlspecialchars(trim($_POST['type']));
+    $breed = htmlspecialchars(trim($_POST['breed']));
+    $sex = htmlspecialchars(trim($_POST['sex']));
+    $age = htmlspecialchars(trim($_POST['age']));
+    $color = htmlspecialchars(trim($_POST['color']));
+    $size = htmlspecialchars(trim($_POST['size']));
+    $description = htmlspecialchars(trim($_POST['description']));
 
-    // Handle image upload
-    $image_folder = '';
-    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-        $image_name = basename($_FILES['image']['name']);
-        $image_tmp = $_FILES['image']['tmp_name'];
-        $image_folder = 'uploads/' . $image_name;
-
-        move_uploaded_file($image_tmp, $image_folder);
-    }
-
-    // Insert animal data into the database
-    $stmt = $conn->prepare("INSERT INTO animals (name, type, breed, sex, age, color, size, description, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssssss", $name, $type, $breed, $sex, $age, $color, $size, $description, $image_folder);
-
-    if ($stmt->execute()) {
-        header("Location: admin-dashboard.php");
-        exit();
+    // Validate inputs
+    if (empty($name) || empty($type) || empty($breed) || empty($sex) || empty($age) || empty($color) || empty($size) || empty($description)) {
+        $error = 'Please fill in all the required fields.';
     } else {
-        echo "<script>alert('Error: " . $stmt->error . "');</script>";
-        error_log("Error inserting into animals table: " . $stmt->error);
+        // Handle image upload
+        $image_folder = '';
+        if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+            $image_name = basename($_FILES['image']['name']);
+            $image_tmp = $_FILES['image']['tmp_name'];
+            $image_folder = 'uploads/' . $image_name;
+
+            move_uploaded_file($image_tmp, $image_folder);
+        }
+
+        // Insert animal data into the database
+        $stmt = $conn->prepare("INSERT INTO animals (name, type, breed, sex, age, color, size, description, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssssss", $name, $type, $breed, $sex, $age, $color, $size, $description, $image_folder);
+
+        if ($stmt->execute()) {
+            header("Location: admin-dashboard.php");
+            exit();
+        } else {
+            $error = 'Error: ' . $stmt->error;
+            error_log("Error inserting into animals table: " . $stmt->error);
+        }
+
+        $stmt->close();
     }
 
-    $stmt->close();
     $conn->close();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,18 +58,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Add Animal</title>
     <link rel="stylesheet" href="edit-animal.css">
+    <script>
+        function validateForm() {
+            var name = document.getElementById("name").value.trim();
+            var type = document.getElementById("type").value;
+            var breed = document.getElementById("breed").value.trim();
+            var sex = document.getElementById("sex").value;
+            var age = document.getElementById("age").value.trim();
+            var color = document.getElementById("color").value.trim();
+            var size = document.getElementById("size").value;
+            var description = document.getElementById("description").value.trim();
+            var image = document.getElementById("image").value;
+
+            var error = "";
+
+            if (name === "") error += "Name is required.\n";
+            if (type === "Select Type") error += "Type is required.\n";
+            if (breed === "") error += "Breed is required.\n";
+            if (sex === "Select Gender") error += "Sex is required.\n";
+            if (age === "") error += "Age is required.\n";
+            if (color === "") error += "Color is required.\n";
+            if (size === "Select Size") error += "Size is required.\n";
+            if (description === "") error += "Description is required.\n";
+            if (image === "") error += "Image is required.\n";
+
+            if (error) {
+                alert(error);
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 </head>
 <body>
     <header>
         <h1>Admin Dashboard - Add Animal</h1>
         <div class="logout">
             <a href="component/logout.php"><button>Log Out</button></a>
-            <img class="search" src="Assests/icons/search.png" alt="">
+            <img class="search" src="Assests/icons/search.png" alt="Search Icon">
         </div>
     </header>
     <div class="sidebar">
         <div class="logo">
-            <img src="assets/logo.png" alt="Animal Adoption Logo">
+            <!-- Add your logo here -->
         </div>
         <nav>
             <ul>
@@ -78,9 +115,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <main>
         <div class="container">
             <div id="dogs" class="tab-content active">
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data">
+                <?php if (!empty($error)) { echo "<p style='color:red;'>$error</p>"; } ?>
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
                     <div class="image-upload">
-                        <img src="Assests/icons/upload.png" alt="upload-image">
+                        <img src="Assests/icons/upload.png" alt="Upload Image">
                         <label for="image" class="custom-file-upload">Upload Image</label>
                         <input type="file" id="image" name="image" required>
                     </div>
@@ -91,10 +129,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="form-group">
                         <label for="type">Type</label>
                         <select id="type" name="type" required>
-                            <option>Select Type</option>
-                            <option>Dog</option>
-                            <option>Cat</option>
-                            <option>Special Needs</option>
+                            <option value="">Select Type</option>
+                            <option value="Dog">Dog</option>
+                            <option value="Cat">Cat</option>
+                            <option value="Special Needs">Special Needs</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -104,9 +142,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="form-group">
                         <label for="sex">Sex</label>
                         <select id="sex" name="sex" required>
-                            <option>Select Gender</option>
-                            <option>Male</option>
-                            <option>Female</option>
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -120,10 +158,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="form-group">
                         <label for="size">Size</label>
                         <select id="size" name="size" required>
-                            <option>Select Size</option>
-                            <option>Small</option>
-                            <option>Medium</option>
-                            <option>Large</option>
+                            <option value="">Select Size</option>
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
                         </select>
                     </div>
                     <div class="form-group">
