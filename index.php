@@ -2,8 +2,8 @@
 // Include database connection
 include 'component/conn.php';
 
-// Fetch featured pets from the database (max 8)
-$query = "SELECT id, name, image, description FROM animals LIMIT 8";
+// Fetch featured pets from the database that are not approved (max 8)
+$query = "SELECT * FROM animals WHERE status != 'approved' LIMIT 8";
 $result = $conn->query($query);
 ?>
 
@@ -28,14 +28,14 @@ $result = $conn->query($query);
             <div class="pets">
                 <?php while ($row = $result->fetch_assoc()): ?>
                     <a href="animal.php?id=<?php echo $row['id']; ?>">
-                <div class="pet">
-                        <div class="img">
-                            <img height="200px" src="<?php echo $row['image']; ?>" alt="">
+                        <div class="pet">
+                            <div class="img">
+                                <img height="200px" src="<?php echo $row['image']; ?>" alt="">
+                            </div>
+                            <h2><?php echo htmlspecialchars($row['name']); ?></h2>
+                            <p><?php echo htmlspecialchars(implode(' ', array_slice(explode(' ', $row['description']), 0, 8))); ?>...</p>
                         </div>
-                        <h2><?php echo htmlspecialchars($row['name']); ?></h2>
-                        <p><?php echo htmlspecialchars(implode(' ', array_slice(explode(' ', $row['description']), 0, 8))); ?>...</p>
-                    </div>
-                </a>
+                    </a>
                 <?php endwhile; ?>
             </div>
         </div>

@@ -29,6 +29,22 @@ if ($result->num_rows === 0) {
 }
 
 $row = $result->fetch_assoc();
+$user_id = $row['user_id'];
+$stmt->close();
+
+// Fetch the user details based on the user_id
+$sql = "SELECT * FROM users WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$user_result = $stmt->get_result();
+
+if ($user_result->num_rows === 0) {
+    echo "No user found for the given user ID.";
+    exit();
+}
+
+$user = $user_result->fetch_assoc();
 $stmt->close();
 $conn->close();
 ?>
@@ -67,6 +83,7 @@ $conn->close();
     </div>
     <main>
         <div class="container">
+            
             <div class="answers">
                 <div class="section">
                     <h2>Your Family</h2>
@@ -83,6 +100,14 @@ $conn->close();
                     <p><strong>Where will your pet sleep at night:</strong> <br> <?php echo htmlspecialchars($row['night_sleep_location']); ?></p>
                     <p><strong>Pet Allergies in the family:</strong> <br> <?php echo htmlspecialchars($row['pet_allergies']); ?></p>
                 </div>
+            </div>
+            <div class="user-details section">
+                <h2>User Details</h2>
+                <h2></strong> <br> <?php echo htmlspecialchars($user['username']); ?></h2>
+                <p><strong>Full Name:</strong> <br> <?php echo htmlspecialchars($user['name']); ?></p>
+                <p><strong>Email:</strong> <br> <?php echo htmlspecialchars($user['email']); ?></p>
+                <p><strong>Address:</strong> <br> <?php echo htmlspecialchars($user['address']); ?></p>
+                <p><strong>Phone:</strong> <br> <?php echo htmlspecialchars($user['phone']); ?></p>
             </div>
         </div>
     </main>

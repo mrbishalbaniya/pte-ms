@@ -8,7 +8,7 @@ $age_range = $_GET['age'] ?? 'All';
 $gender = $_GET['gender'] ?? 'All';
 $color = $_GET['color'] ?? 'All';
 
-$query = "SELECT * FROM animals WHERE 1=1";
+$query = "SELECT * FROM animals WHERE status = 'pending'";
 
 // Apply filters
 if ($animal_type !== 'All') {

@@ -27,7 +27,7 @@
                 $user_id = $_SESSION['user_id'];
 
                 // Fetch adoption requests and animal details
-                $sql = "SELECT q.*, a.name AS animal_name, a.image AS animal_image, a.breed AS animal_breed, a.age AS animal_age, a.color AS animal_color, a.sex AS animal_sex
+                $sql = "SELECT q.*, a.name AS animal_name, a.image AS animal_image, a.breed AS animal_breed, a.age AS animal_age, a.color AS animal_color, a.sex AS animal_sex, a.status AS animal_status
                         FROM questionnaire q
                         INNER JOIN animals a ON q.animal_id = a.id
                         WHERE q.user_id = ?";
@@ -49,7 +49,7 @@
                         echo '<p><strong>Age:</strong> ' . htmlspecialchars($row['animal_age']) . '</p>';
                         echo '<p><strong>Color:</strong> ' . htmlspecialchars($row['animal_color']) . '</p>';
                         echo '<p><strong>Sex:</strong> ' . htmlspecialchars($row['animal_sex']) . '</p>';
-                        echo '<p><strong>Status:</strong> ' . htmlspecialchars($row['status']) . '</p>';
+                        echo '<p><strong>Status:</strong> ' . htmlspecialchars($row['animal_status']) . '</p>';
                         echo '<form action="delete_request.php" method="post">';
                         echo '<input type="hidden" name="request_id" value="' . htmlspecialchars($row['id']) . '">';
                         echo '<button type="submit" name="delete_request" class="delete-button">Delete Request</button>';
