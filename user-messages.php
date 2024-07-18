@@ -34,7 +34,7 @@ $result = $conn->query($sql);
     </header>
     <div class="sidebar">
         <div class="logo">
-            <!-- <img src="assets/logo.png" alt="Animal Adoption Logo"> -->
+            <!-- <img src="assets/logo.png" alt="Animal Adoption Logo">---- -->
         </div>
         <nav>
             <ul>
