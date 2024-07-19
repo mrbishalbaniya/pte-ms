@@ -9,7 +9,7 @@
 <body>
 <footer>
         <hr>
-        <p>animal adoptation ms 2024</p>
+        <p>Petnest 2024</p>
     </footer>
 </body>
 </html>

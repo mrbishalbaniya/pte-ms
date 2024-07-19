@@ -1,0 +1,40 @@
+/* style.css */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ffffff;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: auto; /* Adjust as needed */
+    width: auto;
+}
+
+.nav-links ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links ul li {
+    margin: 0 15px;
+}
+
+.nav-links ul li img.search {
+    height: 20px; /* Adjust as needed */
+    width: auto;
+}
