@@ -66,7 +66,7 @@ $total_pages = ceil($total_count / $limit);
     <main>
         <aside>
             <div class="logo">
-                <img src="Assests/icons/animals.png" alt="Animal Adoption Logo">
+                <!-- <img src="Assests/icons/animals.png" alt="Animal Adoption Logo"> -->
                 <h1>Animal Adoption</h1>
             </div>
             <form method="GET" class="filters">

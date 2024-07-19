@@ -45,6 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Pet Adoption</title>
     <link rel="stylesheet" href="login.css">
+    
     <script>
         function validateLoginForm() {
             var username = document.getElementById("username").value.trim();
@@ -92,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <li>Login</li>
                     </a>
                 <?php endif; ?>
-                <li><img class="search" src="Assests/icons/search.png" alt=""></li>
+               
             </ul>
         </nav>
     </header>
