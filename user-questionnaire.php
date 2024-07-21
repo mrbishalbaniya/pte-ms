@@ -64,12 +64,12 @@ $conn->close();
         <h1>Admin Dashboard - User Questionnaire</h1>
         <div class="logout">
             <button onclick="location.href='logout.php'">Log Out</button>
-            <img class="search" src="Assests/icons/search.png" alt="">
+  
         </div>
     </header>
     <div class="sidebar">
         <div class="logo">
-            <img src="assets/logo.png" alt="Animal Adoption Logo">
+            <!-- <img src="assets/logo.png" alt="Animal Adoption Logo"> -->
         </div>
         <nav>
             <ul>

@@ -14,7 +14,7 @@
                <h2>You can find us here</h2>
             <p>Email: contact@petnest.xyz</p>
             <p>Tel: +977 9801231224, 01-421097</p>
-            <p>Facebook: www.facebook.com/animaladoption</p>
+            <p>Facebook: www.facebook.com/petnest.xyz</p>
             <p>Visit Us: New Baneshwor, Kathmandu</p>
         </div>
         <div class="map">

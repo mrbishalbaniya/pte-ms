@@ -52,7 +52,7 @@ $conn->close();
             <a href="component/logout.php">
                 <button>Log Out</button>
             </a>
-            <img class="search" src="Assests/icons/search.png" alt="">
+  
         </div>
     </header>
     <div class="sidebar">

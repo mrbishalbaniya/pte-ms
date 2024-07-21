@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h1>Admin Dashboard - Add Animal</h1>
         <div class="logout">
             <a href="component/logout.php"><button>Log Out</button></a>
-            <img class="search" src="Assests/icons/search.png" alt="Search Icon">
+            <!-- <img class="search" src="Assests/icons/search.png" alt="Search Icon"> -->
         </div>
     </header>
     <div class="sidebar">

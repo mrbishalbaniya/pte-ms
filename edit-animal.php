@@ -68,7 +68,7 @@ $conn->close();
         <h1>Admin Dashboard - Edit Animal</h1>
         <div class="logout">
             <a href="component/logout.php"><button>Log Out</button></a>
-            <img class="search" src="Assests/icons/search.png" alt="">
+  
         </div>
     </header>
     <div class="sidebar">

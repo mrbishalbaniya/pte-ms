@@ -29,7 +29,7 @@ $result = $conn->query($sql);
         <h1>Admin Dashboard - Customer Messages</h1>
         <div class="logout">
             <button onclick="location.href='logout.php'">Log Out</button>
-            <img class="search" src="Assests/icons/search.png" alt="">
+  
         </div>
     </header>
     <div class="sidebar">
